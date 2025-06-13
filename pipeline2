@@ -1,0 +1,19 @@
+pipeline{
+    agentany{
+        stage('build'){
+            steps{
+                build the docker image
+        stage('test'){
+            steps{
+                test the image
+        stage('deploy'){
+            steps{
+                deploy it into production
+            }
+        }        
+            }
+        }        
+            }
+        }
+    }
+}

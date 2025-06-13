@@ -1,0 +1,36 @@
+pipeline{
+    agentany{
+        environment {
+            AWS_REGION='us-east-1'
+            AWS_ACCESS_KEY='agsavdjsbchgsdnscdjdfjhdfj'
+            AWS_SECRET_KEY='bxjhdc  smd djcndgh sdknxh'
+        }
+        stage('checkout the code'){
+            step{
+                git url: github url
+            }
+        }
+        stage('build'){
+            step{
+                mvn clean install
+            }
+        }
+        stage('test'){
+            step{
+                sh' testing'
+            }
+        }
+        stage('terraform infra'){
+            step{
+                sh'terraform init'
+                sh'terraform plan'
+            }
+        }
+        stage('deploy'){
+            step{
+                aws eks deployment
+            }
+        }
+    }
+}
+
